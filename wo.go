@@ -316,6 +316,13 @@ func changeStatusOfDiamonds() {
     }
 }
 
+func getTurnAwardLuckDraw() {
+    body := fetch("GET", "http://wap.17wo.cn/PlayTurntable!getTurnAwardLuckDraw.action", url.Values{
+        "_": {getUnixMillis()},
+    })
+    log.Println(string(body))
+}
+
 func main() {
     log.Println("===== wo.go start =====")
 
@@ -338,6 +345,7 @@ func main() {
     getStatusOfDiamonds()
     getUserFlowInfo()
     changeStatusOfDiamonds()
+    getTurnAwardLuckDraw()
 
     log.Println("===== wo.go end =====\n")
 }
