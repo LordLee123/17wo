@@ -264,13 +264,23 @@ func initWap() {
 }
 
 func luckDraw() {
-    body := fetch("GET", "http://17wo.cn/FlowRedPacket!LuckDraw.action", nil)
+    body := fetch("GET", "http://wap.17wo.cn/FlowRedPacket!LuckDraw.action", nil)
     log.Println(string(body))
+
+    body = fetch("GET", "http://wap.17wo.cn/FlowRedPacket!share.action", url.Values{
+        "sendid" : {""},
+        "sharecontent": {"undefined"},
+        "subjectId": {"0"},
+        "cpd": {""},
+        "_": {getUnixMillis()},
+    })
+    log.Println(string(body))
+
 }
 
 func earnflow() {
     for k := 0; k < 3; k++ {
-        body := fetch("GET", "http://17wo.cn/FlowRedPacket!LuckDraw.action", url.Values{
+        body := fetch("GET", "http://wap.17wo.cn/FlowRedPacket!LuckDraw.action", url.Values{
             "pageName": {"earnflow"},
             "_": {getUnixMillis()},
         })
