@@ -3,6 +3,7 @@
 
 ### Usage
 > export WO_PHONENUMBER="15612345678"
+
 > export WO_PASSWORD="123456"
 
 > go run wo.go
