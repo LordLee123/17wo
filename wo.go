@@ -255,19 +255,19 @@ func getUnixMillis() string {
 	return strconv.FormatInt(time.Now().UnixNano()/1000000, 10)
 }
 
-func initWap() {
+func loginWeb() {
 	jsessionid, _ := url.QueryUnescape(getJsessionid())
-	fetch("GET", "http://wap.17wo.cn/Index.action", url.Values{
+	fetch("GET", "http://17wo.cn/Index.action", url.Values{
 		"from":       {"17woclient"},
 		"jsessionid": {jsessionid},
 	})
 }
 
 func luckDraw() {
-	body := fetch("GET", "http://wap.17wo.cn/FlowRedPacket!LuckDraw.action", nil)
+	body := fetch("GET", "http://17wo.cn/FlowRedPacket!LuckDraw.action", nil)
 	log.Println(string(body))
 
-	body = fetch("GET", "http://wap.17wo.cn/FlowRedPacket!share.action", url.Values{
+	body = fetch("GET", "http://17wo.cn/FlowRedPacket!share.action", url.Values{
 		"sendid":       {""},
 		"sharecontent": {"undefined"},
 		"subjectId":    {"0"},
@@ -280,7 +280,7 @@ func luckDraw() {
 
 func earnflow() {
 	for k := 0; k < 3; k++ {
-		body := fetch("GET", "http://wap.17wo.cn/FlowRedPacket!LuckDraw.action", url.Values{
+		body := fetch("GET", "http://17wo.cn/FlowRedPacket!LuckDraw.action", url.Values{
 			"pageName": {"earnflow"},
 			"_":        {getUnixMillis()},
 		})
@@ -297,7 +297,7 @@ func gainTaskAwards() {
 	taskIds := []string{"28", "29"}
 
 	for _, taskId := range taskIds {
-		body := fetch("GET", "http://wap.17wo.cn/UserCenterGrowup!gainTaskAwards.action", url.Values{
+		body := fetch("GET", "http://17wo.cn/UserCenterGrowup!gainTaskAwards.action", url.Values{
 			"aId":    {"117"},
 			"taskId": {taskId},
 			"_":      {getUnixMillis()},
@@ -307,19 +307,19 @@ func gainTaskAwards() {
 }
 
 func getStatusOfDiamonds() {
-	body := fetch("GET", "http://wap.17wo.cn/DiamondFlow!getStatusOfDiamonds.action", nil)
+	body := fetch("GET", "http://17wo.cn/DiamondFlow!getStatusOfDiamonds.action", nil)
 	log.Println(string(body))
 }
 
 func getUserFlowInfo() {
-	body := fetch("GET", "http://wap.17wo.cn/DiamondFlow!getUserFlowInfo.action", nil)
+	body := fetch("GET", "http://17wo.cn/DiamondFlow!getUserFlowInfo.action", nil)
 	log.Println(string(body))
 }
 
 func changeStatusOfDiamonds() {
 	diamonds := []string{"green-con", "red-con", "yellow-con"}
 	for _, diamond := range diamonds {
-		body := fetch("GET", "http://wap.17wo.cn/DiamondFlow!changeStatusOfDiamonds.action", url.Values{
+		body := fetch("GET", "http://17wo.cn/DiamondFlow!changeStatusOfDiamonds.action", url.Values{
 			"diamondButton": {diamond},
 		})
 		log.Println(string(body))
@@ -327,7 +327,7 @@ func changeStatusOfDiamonds() {
 }
 
 func getTurnAwardLuckDraw() {
-	body := fetch("GET", "http://wap.17wo.cn/PlayTurntable!getTurnAwardLuckDraw.action", url.Values{
+	body := fetch("GET", "http://17wo.cn/PlayTurntable!getTurnAwardLuckDraw.action", url.Values{
 		"_": {getUnixMillis()},
 	})
 	log.Println(string(body))
@@ -347,8 +347,8 @@ func main() {
 	getSigninfo()
 	signAndReceviFlow()
 
-	// wap
-	initWap()
+	// web
+	loginWeb()
 	luckDraw()
 	earnflow()
 	gainTaskAwards()
